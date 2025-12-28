@@ -1,3 +1,617 @@
+/* ============================
+   WordCamp Tickets
+   ============================ */
+:where(.wp-site-blocks) > * {
+	margin-block-start: 0 !important;
+	margin-block-end: 0;
+}
+
+.wck25-vid {
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.googlemaps {
+	margin-top: 50px !important;
+	width: 1280px !important;
+	max-width: 1280px !important;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 0 7px rgba(50,150,175,0.2) !important;
+}
+
+body .googlemaps iframe {
+	width: 100% !important;
+	max-width: 100% !important;
+	margin-bottom: -7px;
+}
+
+#subscribe-email  input[type="email"] {
+	background-color: rgba(255,255,255,1) !important;
+}
+
+/* ---- Frame / container ---- */
+.tix_tickets_table.tix-tickets-list,
+.tix_tickets_table.tix-order-summary,
+.tix_tickets_table.tix-attendee-form,
+.tix-ticket-form {
+	display: block !important;
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+	margin: 24px auto;
+	font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+	color: #0f172a;
+	border-radius: 18px;
+	overflow: hidden;
+	box-shadow: 0 14px 34px rgba(15,23,42,.08), 0 4px 10px rgba(15,23,42,.05);
+	background: #fff;
+}
+
+#tix.tix-has-dynamic-receipts,
+#tix.tix-js {
+	max-width: var(--wp--style--global--wide-size);
+	text-align: center;
+}
+
+#tix.tix-has-dynamic-receipts .tix-column-quantity {
+	justify-self: center;
+}
+
+#tix .tix_tickets_table.tix-attendee-form {
+	text-align: left;
+}
+
+#tix .tix_tickets_table.tix-attendee-form tbody tr {
+	display: flex !important;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 100px;
+}
+
+#tix .tix_tickets_table.tix-attendee-form td.tix-left,
+#tix .tix_tickets_table.tix-attendee-form td.tix-right {
+	width: 100%;
+}
+
+#tix table .tix-sold-out td, #tix table .tix-sold-out th label {
+	color: red;
+	font-weight: 800;
+}
+
+/* ---- Header (peach + dashed line) ---- */
+.tix_tickets_table thead {
+	display: block;
+	position: relative;
+	background: #fdf3ea;
+}
+
+.tix-ticket-form thead {
+	display: block;
+	position: relative;
+	background: #fdf3ea;
+}
+
+.tix_tickets_table thead tr {
+	display: grid !important;
+	grid-template-columns: 1.4fr .6fr .5fr .6fr;
+	align-items: center;
+}
+
+.tix_tickets_table thead th, .tix-ticket-form thead th {
+	padding: 16px 18px;
+	text-align: left;
+	font-size: 14px;
+	letter-spacing: .03em;
+	text-transform: uppercase;
+	font-weight: 800 !important;
+	color: #0f172a;
+}
+
+.tix_tickets_table thead::after,
+.tix-ticket-form thead::after {
+	content: "";
+	display: block;
+	height: 0;
+	border-bottom: 2px dashed #f97316;
+/* orange */
+}
+
+/* ---- Body rows ---- */
+.tix_tickets_table tbody, .tix-ticket-form tbody {
+	display: block;
+}
+
+.tix_tickets_table tbody tr {
+	display: grid !important;
+	grid-template-columns: 1.4fr .6fr .5fr .6fr;
+	align-items: center;
+	transition: background .18s ease, box-shadow .18s ease;
+}
+
+.tix-ticket-form tr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	column-gap: 41px;
+	padding: 16px 18px;
+}
+
+.tix_tickets_table tbody tr:hover {
+	background: #f8fbff;
+/* gentle hover */
+}
+
+.tix_tickets_table tr {
+	padding: 16px 18px;
+	border-top: 1px solid #e6edf6;
+/* subtle row divider */
+}
+
+/* first/last row rounding already handled by container overflow */
+/* ---- Description column ---- */
+.tix_tickets_table .tix-column-description .tix-ticket-title {
+	display: inline-block;
+	font-weight: 800;
+	font-size: 18px;
+	line-height: 1.25;
+	color: #0b1a2b;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left !important;
+}
+
+/* ---- Price & Remaining ---- */
+.tix_tickets_table .tix-column-price {
+	font-weight: 800;
+	font-size: 16px;
+	white-space: nowrap;
+	color: #0b1a2b;
+	text-align: left;
+}
+
+.tix_tickets_table .tix-column-remaining {
+	font-weight: 800;
+	font-size: 15px;
+	text-align: center;
+	color: #0f766e;
+/* teal = positive */
+}
+
+/* If the event uses 0 remaining or "Sold out", give a warning tint (graceful degrade) */
+.tix_tickets_table .tix-column-remaining:has(> :where(span, strong):contains(0)),
+.tix_tickets_table .tix-column-quantity:has(select[disabled]),
+.tix_tickets_table .tix-column-quantity:has(select[aria-disabled="true"]) {
+	color: #b91c1c !important;
+/* red */
+}
+
+@supports not (selector(:has())) {
+	/* fallback: keep neutral color if :has isn’t supported */
+	
+}
+
+/* ---- Quantity select (bigger tap target, custom arrow, strong focus) ---- */
+.tix_tickets_table .tix-column-quantity {
+	position: relative;
+	justify-self: end;
+}
+
+.tix_tickets_table .tix-column-quantity select, .tix-attendee-form input[type="text"], .tix-attendee-form input[type="email"],
+#tix-coupon-input {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	min-width: 96px;
+	padding: 10px 40px 10px 14px;
+	font-size: 15px;
+	font-weight: 700;
+	background: #ffffff;
+	border: 1.5px solid #dbe5f1;
+	border-radius: 12px;
+	box-shadow: inset 0 1px 0 rgba(2,6,23,.03);
+	color: #0f172a;
+	cursor: pointer;
+	transition: border-color .18s ease, box-shadow .18s ease, transform .06s ease;
+}
+
+.tix_tickets_table .tix-column-quantity select:hover {
+	border-color: #cbd9eb;
+}
+
+.tix_tickets_table .tix-column-quantity select:focus {
+	outline: none;
+	border-color: #2563eb;
+	box-shadow: 0 0 0 4px rgba(37,99,235,.18);
+}
+
+.tix_tickets_table .tix-column-quantity select:active {
+	transform: translateY(1px);
+}
+
+/* ---- Register button (premium orange) ---- */
+form[action*="tix_action=attendee_info"] input[type="submit"], #tix .tix-submit .tix-checkout-button, #tix input[type="submit"] {
+	background: linear-gradient(180deg, #ff7a1a 0%, #f97316 100%);
+	color: #fff;
+	border: 0;
+	border-radius: 5px;
+	padding: 12px 18px;
+	text-transform: uppercase;
+	box-shadow: 0 10px 20px rgba(249,115,22,.28), 0 2px 6px rgba(0,0,0,.08);
+	transition: transform .12s ease, box-shadow .18s ease, filter .12s ease;
+}
+
+form[action*="tix_action=attendee_info"] input[type="submit"]:hover, #tix .tix-submit .tix-checkout-button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 14px 28px rgba(249,115,22,.35), 0 6px 12px rgba(0,0,0,.08);
+	filter: brightness(1.02);
+}
+
+form[action*="tix_action=attendee_info"] input[type="submit"]:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px rgba(249,115,22,.25), 0 10px 20px rgba(249,115,22,.28);
+}
+
+/* ---- Small UX niceties ---- */
+.tix-clear {
+	display: none;
+}
+
+/* avoid float gaps in some themes */
+.tix_tickets_table tbody tr:focus-within {
+	background: #f4f9ff;
+	box-shadow: inset 0 0 0 2px rgba(37,99,235,.08);
+}
+
+/* copied from surat wc **/
+/*remove above css after designing*/
+.hero-section-homepage {
+	background-color: #ffffff;
+	background-color: #ffffff;
+/*    background-image: url('https://kolhapur.wordcamp.org/2026/files/2025/10/wordcamp-kolhapur-2025.webp');
+
+	background-image: url('https://kolhapur.wordcamp.org/2026/files/2025/10/wordcamp-kolhapur-2025.webp');
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-size: contain;*/
+}
+
+.hero-section-homepage h1 {
+	position: relative;
+}
+
+/*
+.hero-section-homepage h1:before, .hero-section-homepage h1:after {
+    position: absolute;
+    content: '';
+    left: -80px;
+    top: -80px;
+    width: 80px;
+    height: 80px;
+    background-image: url('https://kolhapur.wordcamp.org/2026/files/2025/10/bird-animated.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+    */
+.hero-section-homepage h1:after {
+	top: -60px;
+	right: -80px;
+	left: auto;
+	transform: scaleX(-1);
+}
+
+.homepage-join-wordcamp .wp-block-column {
+	padding: 25px;
+	border-radius: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+.homepage-join-wordcamp {
+	background-image: url('https://kolhapur.wordcamp.org/2026/files/2025/10/bg-img-2.png');
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+
+/*Home Page Buttons*/
+.wp-block-column {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Footer  Social media icons align Right*/
+.wp-block-social-links.aligncenter {
+	display: flex;
+	justify-content: ;
+}
+
+/* attendee page*/
+#tix-attendees ul {
+	padding: 15px !important;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.tix-attendee-list li {
+	display: flex;
+	align-items: ;
+	box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+	padding: 15px !important;
+	margin-right: 20px;
+	height: auto !important;
+	margin-bottom: 20px;
+}
+
+#tix-attendees .tix-field {
+	margin: 0 !important;
+	padding-left: 20px !important;
+}
+
+#tix-attendees .avatar {
+	width: 96px !important;
+	height: 96px !important;
+	border-radius: 4px !important;
+	margin-bottom: 15px !important;
+	box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+}
+
+.page-slug-sponsors .tix-attendee-list {
+	padding: 0 0 0 20px !important;
+	margin: 0 !important;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+	.home ul.wp-block-latest-post li {
+		flex-basis: 100%;
+	}
+	
+	form[action*="tix_action=attendee_info"] input[type="submit"], #tix .tix-submit .tix-checkout-button, #tix input[type="submit"] {
+		width: 100% !important;
+		text-align: center !important;
+	}
+}
+
+/*Tickets Responsiveness*/
+@media (max-width: 720px) {
+	.tix_tickets_table thead {
+		display: none;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table tbody tr {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "desc desc" "price remain" "qty qty";
+		row-gap: 12px;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table .tix-column-description {
+		grid-area: desc;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table .tix-column-price {
+		grid-area: price;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table .tix-column-remaining {
+		grid-area: remain;
+		text-align: right;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table .tix-column-quantity {
+		grid-area: qty;
+		justify-self: stretch;
+	}
+}
+
+@media (max-width: 720px) {
+	.tix_tickets_table .tix-column-quantity select {
+		width: 100%;
+	}
+	
+	.wp-container-core-group-is-layout-10dda84a {
+		grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+	}
+	
+	.wp-container-core-post-template-is-layout-572542b5 {
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)) !important;
+	}
+	
+	.wck26_days .wp-block-button {
+		width: 100% !important;
+	}
+	
+	.wck26_section_header {
+		display: block !important;
+		width: 100% !important;
+	}
+	
+	.wck26_section_header .wp-block-group {
+		width: 100% !important;
+	}
+	
+	.tktpg-btn .wp-block-button {
+		min-width: 100% !important;
+	}
+	
+	.wck26-btn-wrapper, 
+						.wck26-btn-wrapper .wp-block-buttons {
+		width: 100% !important;
+	}
+	
+	.wck26-below-footer * {
+		text-align: center !important;
+	}
+}
+
+.tix-attendee-list li {
+	background: #ffffff;
+	border-radius: 8px;
+}
+
+#tix-attendees li {
+	background-color: var(--wp--preset--color--custom-background-gray);
+	border: 1px solid var(--wp--preset--color--contrast-3);
+	border-radius: 8px;
+	box-sizing: border-box;
+	float: none;
+	height: auto !important;
+	margin: 0 !important;
+	overflow: hidden;
+	padding: 15px 25px;
+	width: 100% !important;
+}
+
+#tix-attendees ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	padding: 0;
+}
+
+/*ADDED BY H*/
+#tix-attendees .tix-attendee-list {
+	padding: 0 !important;
+}
+
+.tix-attendee-list li {
+	display: block;
+}
+
+#tix-attendees .tix-attendee-list li .tix-field {
+	margin-left: 90px !important;
+}
+
+.tix-attendee-name {
+	font-size: 16px !important;
+	font-weight: 600;
+	padding-bottom: 10px !important;
+}
+
+#tix-attendees .tix-attendee-list img.avatar {
+	margin-bottom: 0 !important;
+}
+
+#tix-attendees .tix-attendee-list li {
+	background: #fff;
+	border: 0;
+	box-shadow: rgba(0, 0, 0, 0) 0 1px 4px !important;
+}
+
+.attendee-box {
+	padding: 5% !important;
+}
+
+.join-wck26 .wp-block-button {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.join-wck26 .wp-block-button .wp-element-button {
+	text-transform: uppercase;
+	font-size: 16px;
+}
+
+.is-uppercase {
+	text-transform: uppercase !important;
+}
+
+.wck26sponsors .wcb_sponsor {
+	background: #fff !important;
+	border-radius: 10px;
+}
+
+.wck26sponsors .wcb_sponsor .wp-block-post-featured-image {
+	padding: 30px 100px !important;
+}
+
+.wck26sponsors .wcb_sponsor img {
+	max-width: 300px !important;
+}
+
+/*CSS for attendees page */
+@media (max-width: 768px) {
+	.page-id-14 #wp--skip-link--target.has-global-padding,
+																							    .page-id-14 #wp--skip-link--target .has-global-padding {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+	
+	.wp-block-navigation__responsive-container {
+		padding: 20px !important;
+	}
+	
+	.wp-block-navigation__responsive-container li {
+		border-bottom: 1px solid #acacac !important;
+	}
+	
+	.wp-block-navigation-submenu li {
+		border-bottom: 0 solid #434343 !important;
+	}
+	
+	.wp-block-navigation__container,
+												.wp-block-navigation__container * {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	
+	body .wp-block-navigation-item__content:focus {
+		outline: none !important;
+		border: 0 !important;
+	}
+	
+	.googlemaps {
+		margin-top: 50px !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	
+	.googlemaps iframe {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: 250px;
+	}
+	
+	body .wck26-directions-btn,
+		body .wck26-directions-btn a {
+		width: 100%;
+		text-align: center !important;
+	}
+}
+
+.page-id-14 .has-global-padding {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+body .wp-block-navigation-item__content:focus {
+	outline: none !important;
+}
+
+/*Attendee Url Icon*/
+a.tix-website-url-blog-portfolio-or-agency {
+	text-decoration: none !important;
+}
+
+a.tix-website-url-blog-portfolio-or-agency::before {
+	content: "\f103";
+	font-family: dashicons;
+	font-size: 12px;
+	margin-right: 6px;
+}
+
+
 .sponsorship-table-container .sponsorship-table-wrap {
 	overflow-x: auto;
 	max-width: 100%;
@@ -56,3 +670,4 @@
 .sponsorship-table-container tr td:nth-child(6) {
 	background-color: #d2f5fe;
 }
+
