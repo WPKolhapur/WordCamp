@@ -587,9 +587,9 @@ form[action*="tix_action=attendee_info"] input[type="submit"]:focus {
 }
 
 .wp-block-navigation-item {
-	padding: 10px !important;
+	padding: 10px 0 !important;
 	font-size: 18px !important;
-	font-weight: 500 !important;
+	font-weight: 700 !important;
 }
 
 .wp-block-navigation__submenu-container,
@@ -723,4 +723,5 @@ a.tix-website-url-blog-portfolio-or-agency::before {
 .sponsorship-table-container tr td:nth-child(6) {
 	background-color: #d2f5fe;
 }
+
 
