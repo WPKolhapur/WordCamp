@@ -746,10 +746,7 @@ a.tix-website-url-blog-portfolio-or-agency::before {
     flex-basis: 200px;
 }
 
-/*Volunteer Block Shadow*/
-.wp-block-column.wpblockvolunteer.is-layout-constrained{
-    box-shadow: rgb(1, 2, 3) 0px 5px 20px -10px !important;
-}
+
 
 
 
