@@ -732,8 +732,8 @@ a.tix-website-url-blog-portfolio-or-agency::before {
 }
 
 /*  SPEAKER BOX*/
-.wcb_speaker{
-	    border-color: #0d66c2 !important;
+/* .wcb_speaker{
+	border-color: #0d66c2 !important;
     border-style: dashed;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -744,5 +744,6 @@ a.tix-website-url-blog-portfolio-or-agency::before {
     padding-bottom: var(--wp--preset--spacing--10);
     padding-left: var(--wp--preset--spacing--10);
     flex-basis: 200px;
-}
+}*/
+
 
