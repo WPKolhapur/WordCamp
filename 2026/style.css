@@ -748,8 +748,9 @@ a.tix-website-url-blog-portfolio-or-agency::before {
 
 /*Volunteer Block Shadow*/
 .wpblockvolunteer{
-	box-shadow: 0 5px 20px -10px rgba(0,0,0,0.1) !important;
+	box-shadow: 0 5px 20px -10px rgba(1,2,3,5) !important;
 }
+
 
 
 
