@@ -747,6 +747,17 @@ a.tix-website-url-blog-portfolio-or-agency::before {
 }
 
 
+/* Schedule Table */
+.wordcamp-schedule__column-header{
+    color: #ffffff !important;
+    font-size: 1.5px em !important;
+    background: #FF6600 !important;
+}
+
+.wordcamp-schedule__time-slot-header {
+    background: #FAF1E6 !important;
+    padding: 10px 20px !important;
+}
 
 
 
