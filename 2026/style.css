@@ -545,8 +545,8 @@ form[action*="tix_action=attendee_info"] input[type="submit"]:focus {
 }
 
 .wck26sponsors .wcb_sponsor img {
-	max-width: 300px !important;
-}
+	/* max-width: 300px !important; */
+} 
 
 /*CSS for attendees page */
 @media (max-width: 768px) {
@@ -759,6 +759,7 @@ a.tix-website-url-blog-portfolio-or-agency::before {
     background: #FAF1E6 !important;
     padding: 10px 20px !important;
 }
+
 
 
 
