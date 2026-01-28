@@ -540,7 +540,8 @@ form[action*="tix_action=attendee_info"] input[type="submit"]:focus {
 }
 
 .wck26sponsors .wcb_sponsor .wp-block-post-featured-image {
-	padding: 30px 100px !important;
+	padding: 30px 20px !important;
+	object-fit: contain !important;
 }
 
 .wck26sponsors .wcb_sponsor img {
@@ -758,6 +759,7 @@ a.tix-website-url-blog-portfolio-or-agency::before {
     background: #FAF1E6 !important;
     padding: 10px 20px !important;
 }
+
 
 
 
